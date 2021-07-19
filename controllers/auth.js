@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Auth = require("./../middleware/is-auth");
 
 const User = require("../models/user");
 
@@ -31,7 +32,7 @@ module.exports = (app) => {
       });
   });
 
-  app.post("/login", (req, res, next) => {
+  app.post("/login", Auth, (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
 
