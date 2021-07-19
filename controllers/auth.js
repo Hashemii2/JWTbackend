@@ -19,7 +19,9 @@ module.exports = (app) => {
         return user.save();
       })
       .then((result) => {
-        res.status(201).json({ message: "User created!", userId: result._id });
+        res
+          .status(201)
+          .json({ message: "ثبت نام انجام شد.", userId: result._id });
       })
       .catch((err) => {
         if (!err.statusCode) {
@@ -46,7 +48,7 @@ module.exports = (app) => {
       })
       .then((isEqual) => {
         if (!isEqual) {
-          const error = new Error("پسورد اشتباه است");
+          const error = new Error("کاربری با این مشخصات یافت نشد.");
           error.statusCode = 401;
           throw error;
         }
